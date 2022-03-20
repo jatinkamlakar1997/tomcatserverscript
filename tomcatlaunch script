@@ -1,0 +1,9 @@
+#!/bin/bash  #Shibangline
+yum install java -y #java is required for running tomcat server
+curl -O https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.77/bin/apache-tomcat-8.5.77.tar.gz # binary link for tomcat from browser
+tar xzf apache-tomcat-8.5.77.tar.gz -C /mnt  # extracting .gz file
+#Now we need to have application that needs to be copied in tomacat's webapp then connector that is pasted in lib, first we will have to create busck and paste those files there and import to ec2. First we will attach roles of s3 full access and get that files using s3 cmd
+aws s3 cp s3://tomcat4jatin/student.war /mnt/apache-tomcat-8.5.77/webapps
+aws s3 cp s3://tomcat4jatin/mysql-connector.jar /mnt/apache-tomcat-8.5.77/lib
+cd /mnt/apache-tomcat-8.5.77/bin
+sh catlina.sh start
